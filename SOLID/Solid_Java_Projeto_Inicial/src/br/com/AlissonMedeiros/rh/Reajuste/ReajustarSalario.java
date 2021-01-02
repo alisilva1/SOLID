@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
-class ReajustarSalario {
+public class ReajustarSalario {
 
     private List<ValidacaoReajuste> validacoes;
 

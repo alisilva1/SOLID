@@ -10,12 +10,14 @@ import java.time.temporal.ChronoUnit;
 public class ValidacaoPeriodicidade implements ValidacaoReajuste {
     public void Validar(Funcionario funcionario, BigDecimal aumento) {
 
-        LocalDate dataDoUltimoReajuste = rh.model.Funcionario.getDataUltimoReajuste();
+        LocalDate dataDoUltimoReajuste = funcionario.getDataUltimoReajuste();
+        //For accident i instance a method from Class, but i need to use a method of Object;
+
         LocalDate dataAtual = LocalDate.now();
         long diference = ChronoUnit.MONTHS.between(dataDoUltimoReajuste, dataAtual);
 
         if (diference < 6) {
-            throw new ValidacaoException("Tempo necessário entre dois ajustes deve ser maior que 6 meses");
+            throw new ValidacaoException("Tempo necessario entre dois ajustes deve ser maior que 6 meses");
         }
 
     }
