@@ -1,6 +1,6 @@
 # SOLID
 
-I create this project to train SOLID principle:
+I´m using this project to train SOLID principle:
 
 + Single Responsability Principle;
 + Open-Closed Principle;
