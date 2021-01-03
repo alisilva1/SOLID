@@ -14,6 +14,8 @@ public class Teste {
         Funcionario Alfa = new Funcionario("Alisson","138", Cargo.ANALISTA, BigDecimal.valueOf(2350));
         //ReajustarSalario.ReajustarSalarioFuncionario(Alfa,BigDecimal.valueOf(2350));
         Promocao.promover(Alfa,true);
+
+        //Ao criar a composição para usar as funções foi necessário trocar de Funcionario.metodo para
         System.out.println(MessageFormat.format("Funcionário: {0} seu salário foi reajustado para {1} em {2}", Alfa.getNome(),Alfa.getSalario(),Alfa.getDataUltimoReajuste()));
         System.out.println(MessageFormat.format("o seu cargo atual é de {0}",Alfa.getCargo()));
     }

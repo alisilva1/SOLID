@@ -1,17 +1,28 @@
 package rh.model;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 //O que é um funcionário
 public class Funcionario {
 
+	private DadosPessoais dadosPessoais;
+	private LocalDate dataUltimoReajuste;
+
+	public Funcionario(String nome, String cpf, Cargo cargo, BigDecimal salario) {
+		this.dadosPessoais = new DadosPessoais(nome, cpf, cargo, salario);
+		this.dataUltimoReajuste = LocalDate.now();
+	}
+	/*
+	//Se eu extender o funcionário terceirizado, a herança não vai respeitar o parametro de Liskov Substitution Principle, onde eu vou ter um funcionário terceirizado
+	//realizando funções como aumento e promoção pela empresa contratante e não pela empresa terceirizada.
+	//Para evitar problemas relacionados a Herança, foi indicado a utilização da composição
+
 	private String nome;
 	private String cpf;
 	private Cargo cargo;
 	private BigDecimal salario;
-	private LocalDate dataUltimoReajuste;
+
 
 	public Funcionario(String nome, String cpf, Cargo cargo, BigDecimal salario) {
 		this.nome = nome;
@@ -19,6 +30,8 @@ public class Funcionario {
 		this.cargo = cargo;
 		this.salario = salario;
 	}
+	*/
+
 
 	/* Metodo criado no funcionário que para obter melhor coesão será recriado em outro pacote e classe.
 
@@ -33,42 +46,45 @@ public class Funcionario {
 
 	Novo metodo coeso */
 
-	public void atualizaSalario(BigDecimal novoSalario){
-		this.salario = novoSalario;
-		this.dataUltimoReajuste = LocalDate.now();
-	}
 
+
+	//Getter and Setter for new Class
 
 	public String getNome() {
-		return nome;
+		return dadosPessoais.getNome();
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		dadosPessoais.setNome(nome);
 	}
 
 	public String getCpf() {
-		return cpf;
+		return dadosPessoais.getCpf();
 	}
 
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		dadosPessoais.setCpf(cpf);
 	}
-
 	public Cargo getCargo() {
-		return cargo;
+		return dadosPessoais.getCargo();
 	}
 
 	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
+		dadosPessoais.setCargo(cargo);
 	}
 
 	public BigDecimal getSalario() {
-		return salario;
+		return dadosPessoais.getSalario();
 	}
 
 	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
+		dadosPessoais.setSalario(salario);
+	}
+
+	//Methods
+	public void atualizaSalario(BigDecimal novoSalario){
+		this.dadosPessoais.setSalario(novoSalario);
+		this.dataUltimoReajuste = LocalDate.now();
 	}
 
 	public LocalDate getDataUltimoReajuste() {
@@ -80,6 +96,6 @@ public class Funcionario {
 	}
 
     public void promover(Cargo novoCargo) {
-		this.cargo = novoCargo;
-    }
+		this.dadosPessoais.setCargo(novoCargo);
+	}
 }
