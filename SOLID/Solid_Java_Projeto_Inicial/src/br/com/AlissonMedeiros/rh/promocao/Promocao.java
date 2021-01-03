@@ -4,7 +4,31 @@ import rh.ValidacaoException;
 import rh.model.Cargo;
 import rh.model.Funcionario;
 
-public class Promocao {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public class Promocao implements ReajusteTributavel {
+    private BigDecimal valor;
+    private LocalDate data;
+
+    public Promocao(BigDecimal valor){
+        this.valor = valor;
+        this.data = LocalDate.now();
+    }
+
+    //Getter and Setter
+
+    @Override
+    public BigDecimal valor() {
+        return valor;
+    }
+
+    @Override
+    public LocalDate data() {
+        return data;
+    }
+
+    //Function
 
     public static void promover(Funcionario funcionario, boolean metaAlcancada){
         Cargo cargoAtual = funcionario.getCargo();
@@ -18,5 +42,10 @@ public class Promocao {
             throw new ValidacaoException("Funcionario nao alcancou a meta!");
         }
 
+    }
+
+    @Override
+    public BigDecimal valorImpostoDeRenda() {
+        return valor.multiply(new BigDecimal("0.1"));
     }
 }
